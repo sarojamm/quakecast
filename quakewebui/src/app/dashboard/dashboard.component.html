@@ -1,0 +1,19 @@
+<h2>Recent Earthquakes</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Magnitude</th>
+      <th>Date & Time</th>
+      <th>Depth (km)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let quake of earthquakes">
+      <td>{{ quake.place }}</td>
+      <td>{{ quake.magnitude }}</td>
+      <td>{{ quake.time | date:'short' }}</td>
+      <td>{{ quake.depth }}</td>
+    </tr>
+  </tbody>
+</table>
