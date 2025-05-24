@@ -1,0 +1,19 @@
+
+
+# Node modules
+quakewebui/node_modules/
+quakewebui/.angular
+quakewebui/.DS_Store
+# Environment files
+.env
+
+# Build outputs
+quakewebui/dist/
+quakewebui/out-tsc/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+backend/__pycache__
