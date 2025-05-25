@@ -16,11 +16,13 @@ export class DashboardComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  loading: boolean = false;
   constructor(private quakeService: EarthquakeService , private router: Router) {}
 
   ngOnInit(): void {
     this.quakeService.getRecentEarthquakes().subscribe(data => {
       this.earthquakes = data.earthquakes;
+      this.loading=true;
     });
    
     this.columnDefs = [

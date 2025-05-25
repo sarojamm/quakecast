@@ -1,5 +1,6 @@
 <h2>Recent Earthquakes</h2>
-
+<div *ngIf="loading" class="text-center py-4 text-gray-500">
+ 
 <ag-grid-angular
   style="width: 100%; height: 600px;"
   class="ag-theme-alpine"
@@ -9,3 +10,4 @@
   [paginationPageSize]="10"
   (rowClicked)="onRowClicked($event)">
 </ag-grid-angular>
+</div>

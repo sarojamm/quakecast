@@ -14,4 +14,8 @@ export class EarthquakeService {
   getRecentEarthquakes(): Observable<{ earthquakes: Earthquake[] }> {
     return this.http.get<{ earthquakes: Earthquake[] }>(this.apiUrl);
   }
+  getEarthquakeById(id: string): Observable<Earthquake> {
+    return this.http.get<Earthquake>(`${this.apiUrl.replace('/recent', '')}/${id}`);
+  }
+  
 }
