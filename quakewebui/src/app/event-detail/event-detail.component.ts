@@ -4,6 +4,7 @@ import { EarthquakeService } from '../service/earthquake.service';
 import { Earthquake } from '../model/earthquake.model';
 import { Location } from '@angular/common';
 import * as L from 'leaflet';
+import { fixLeafletIcons } from '../utils/leaflet-icon-fix';
 
 @Component({
   selector: 'app-event-detail',
@@ -31,6 +32,7 @@ export class EventDetailComponent implements OnInit, AfterViewChecked {
   ) {}
 
   ngOnInit(): void {
+    fixLeafletIcons();
     this.eventId = this.route.snapshot.paramMap.get('id');
     if (this.eventId) {
       this.loading = true;
@@ -49,16 +51,37 @@ export class EventDetailComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
+
     if (this.quake && !this.mapInitialized && document.getElementById('map')) {
       this.initMap();
       this.mapInitialized = true;
     }
+    setTimeout(() => {
+      this.map?.invalidateSize();
+    }, 100);
   }
 
   initMap(): void {
     if (!this.quake) return;
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
 
-    this.map = L.map('map').setView([this.quake.latitude, this.quake.longitude], 6);
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+      iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+      shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    });
+    // this.map = L.map('map').setView([this.quake.latitude, this.quake.longitude], 6);
+    this.map = L.map('map', {
+      center: [this.quake.latitude, this.quake.longitude],
+      zoom: 6,
+      dragging: false,           // 🚫 Disable dragging
+      scrollWheelZoom: false,    // 🚫 Disable zoom on scroll
+      doubleClickZoom: false,    // 🚫 Disable zoom on double-click
+      boxZoom: false,            // 🚫 Disable box zoom
+      keyboard: false,           // 🚫 Disable keyboard navigation
+      zoomControl: false,        // 🚫 Hide zoom buttons
+    });
+      
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors',
@@ -67,6 +90,11 @@ export class EventDetailComponent implements OnInit, AfterViewChecked {
     L.marker([this.quake.latitude, this.quake.longitude]).addTo(this.map)
       .bindPopup(this.quake.place)
       .openPopup();
+
+   
+      setTimeout(() => {
+        this.map?.invalidateSize();
+      }, 100);
   }
 
   generateWaveformUrl(startTime: number): string {
