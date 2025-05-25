@@ -36,8 +36,7 @@ export class EventDetailComponent implements OnInit, AfterViewChecked {
       this.loading = true;
       this.service.getEarthquakeById(this.eventId).subscribe({
         next: (data) => {
-          this.quake = data;
-          // setTimeout(() => this.initMap(), 5);
+          this.quake = data; 
           this.waveformUrl = this.generateWaveformUrl(data.time);
           this.loading = false;
         },
@@ -72,7 +71,8 @@ export class EventDetailComponent implements OnInit, AfterViewChecked {
 
   generateWaveformUrl(startTime: number): string {
     const iso = '2023-01-01T00:00:00';  // known valid time
-    // const iso = new Date(startTime).toISOString();
+    const iso2 = new Date(startTime).toISOString();
+    console.log(iso2)
     const { net, sta, loc, cha } = this.selectedStation; 
     return `https://service.iris.edu/irisws/timeseries/1/query?net=${net}&sta=${sta}&loc=${loc}&cha=${cha}&starttime=${iso}&duration=300&output=plot`;
   }
