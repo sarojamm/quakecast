@@ -1,0 +1,58 @@
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="text-center py-4 text-gray-500">
+    Loading event details...
+  </div>
+  
+  <!-- Error Message -->
+  <div *ngIf="error" class="text-red-500 text-center py-4">
+    {{ error }}
+  </div>
+  
+  <!-- Earthquake Detail Content -->
+  <div *ngIf="quake" class="p-4 max-w-4xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">Event Detail</h2>
+  
+    <!-- Favorite Button -->
+    <button
+      (click)="toggleFavorite()"
+      class="px-4 py-2 mb-4 bg-yellow-500 text-white rounded hover:bg-yellow-600">
+      {{ isFavorite() ? '★ Remove Favorite' : '☆ Add to Favorites' }}
+    </button>
+  
+    <!-- Earthquake Metadata -->
+    <h3 class="text-xl font-medium mb-2">Earthquake Info</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div>
+        <p><strong>Location:</strong> {{ quake.place }}</p>
+        <p><strong>Magnitude:</strong> {{ quake.magnitude }}</p>
+        <p><strong>Time:</strong> {{ quake.time | date:'medium' }}</p>
+        <p><strong>Depth:</strong> {{ quake.depth }} km</p>
+      </div>
+      <div>
+        <button (click)="goBack()" class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">
+          ← Back to Dashboard
+        </button>
+      </div>
+    </div>
+  
+    <!-- Waveform Plot -->
+    <h3 class="text-xl font-medium mb-2">Waveform</h3>
+    <div class="mb-4">
+      <label class="font-medium">Select Station:</label>
+      <select [(ngModel)]="selectedStation" (change)="onStationChange()" class="border p-1 ml-2 rounded">
+        <option *ngFor="let s of stationOptions" [ngValue]="s">{{ s.label }}</option>
+      </select>
+    </div>
+    <img *ngIf="waveformUrl" [src]="waveformUrl"
+      alt="Waveform plot" class="border rounded shadow max-w-full mb-6">
+    
+    <img *ngIf="!waveformUrl" src="assets/waveform-placeholder.png" alt="No waveform available" class="max-w-full opacity-50 mb-6">
+     <!-- Map View -->
+    <h3 class="text-xl font-medium mb-2">Map View</h3>
+    <!-- <div id="map" class="h-80 rounded border shadow" ></div> -->
+    <!-- <div id="map" class="rounded border shadow" style="width: 100%; height: 400px;"></div> -->
+    <div id="map" class="w-full h-96 rounded border shadow"></div>
+
+
+  </div>
+  

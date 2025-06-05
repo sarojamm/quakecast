@@ -54,7 +54,6 @@ QuakeCast addresses the challenge of early detection in earthquake-prone regions
 
 ## 📦 Installation
 
-```bash
 # Clone the repo
 git clone https://github.com/yourusername/quakecast.git
 cd quakecast
@@ -76,9 +75,6 @@ Create a .env file in the backend folder:
 📊 Dashboard Preview
 Risk Map View
 Waveform Input Analysis
-
-
-
 
 
 📈 Sample Data Sources
@@ -104,29 +100,10 @@ Spectrogram classification
 
 
 
+Would you like:
 
+    Filtering by region (bounding box)?
 
+    Results for a specific country?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    A live automated fetch-and-plot pipeline?
