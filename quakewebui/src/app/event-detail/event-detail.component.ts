@@ -5,6 +5,8 @@ import { Earthquake } from '../model/earthquake.model';
 import { Location } from '@angular/common';
 import * as L from 'leaflet';
 import { fixLeafletIcons } from '../utils/leaflet-icon-fix';
+// from obspy.clients.fdsn import Client;
+// from obspy import UTCDateTime;
 
 @Component({
   selector: 'app-event-detail',
@@ -40,6 +42,19 @@ export class EventDetailComponent implements OnInit, AfterViewChecked {
         next: (data) => {
           this.quake = data; 
           this.waveformUrl = this.generateWaveformUrl(data.time);
+          console.log(this.waveformUrl)
+          this.loading = false;
+        },
+        error: () => {
+          this.error = 'Failed to load event data.';
+          this.loading = false;
+        }
+      });
+      this.service.getRecentEarthquakeFromFDSN(this.eventId).subscribe({
+        next: (data) => {
+          this.quake = data; 
+          this.waveformUrl = this.generateWaveformUrl(data.time);
+          console.log(this.waveformUrl)
           this.loading = false;
         },
         error: () => {
@@ -97,12 +112,45 @@ export class EventDetailComponent implements OnInit, AfterViewChecked {
       }, 100);
   }
 
+  // working : https://service.iris.edu/irisws/timeseries/1/query?net=IU&sta=ANMO&loc=00&cha=BHZ&starttime=2023-01-01T00:00:00&duration=300&output=plot
   generateWaveformUrl(startTime: number): string {
+    //  Working 
     const iso = '2023-01-01T00:00:00';  // known valid time
     const iso2 = new Date(startTime).toISOString();
     console.log(iso2)
     const { net, sta, loc, cha } = this.selectedStation; 
     return `https://service.iris.edu/irisws/timeseries/1/query?net=${net}&sta=${sta}&loc=${loc}&cha=${cha}&starttime=${iso}&duration=300&output=plot`;
+  }
+  // generateWaveformFDSNUrl(startTime: number): string {
+  //   const client = Client("IRIS")
+  //   // # Define your parameters
+  //   const network = "IU"
+  //   const station = "HRV"
+  //   const location = "*"
+  //   const channel = "BHZ"
+  //   const starttime = UTCDateTime("1990-01-01T00:00:00")
+  //   const endtime = UTCDateTime("1990-01-01T01:00:00")
+  //   // # Retrieve waveform data
+  //   stream = client.get_waveforms(network, station, location, channel, starttime, endtime)
+
+  //   return "Success "
+
+  // }
+
+
+// # Create an FDSN client
+// 
+ 
+
+// # Now you have the waveform data in the 'stream' object, and you can
+// # process it using ObsPy functions (e.g., stream.plot())
+    generateWaveformUrl1(startTime: number): string {
+      // not working
+    const iso = '2024-01-01T00:00:00';  // known valid time
+    const iso2 = new Date(startTime).toISOString();
+    console.log(iso2)
+    const { net, sta, loc, cha } = this.selectedStation; 
+    return `https://service.iris.edu/fdsnws/event/1/query?net=${net}&sta=${sta}&loc=${loc}&cha=${cha}&starttime=${iso}&duration=300&output=plot`;
   }
   
   onStationChange(): void {
