@@ -52,58 +52,62 @@ QuakeCast addresses the challenge of early detection in earthquake-prone regions
 
 ---
 
-## 📦 Installation
+# 📦 Installation
 
-# Clone the repo
+## Clone the repo
 git clone https://github.com/yourusername/quakecast.git
 cd quakecast
 
-# Backend setup
-cd backend
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload
+## Backend setup
+* cd backend
+* python -m venv venv
+* source venv/bin/activate
+* pip install -r requirements.txt
+* uvicorn main:app --reload
 
-# Frontend setup
-cd ../frontend
-npm install
-npm run dev
+## Frontend setup
+* cd ../frontend
+* npm install
+* npm run dev
 
 ⚙️ Environment Variables
-Create a .env file in the backend folder:
-📊 Dashboard Preview
-Risk Map View
-Waveform Input Analysis
+* Create a .env file in the backend folder:
+*  📊 Dashboard Preview
+*  Risk Map View
+*  Waveform Input Analysis
 
 
 📈 Sample Data Sources
-USGS Earthquake Catalog
-IRIS Seismic Data
-Sentinel-1 InSAR Data 
-Raspberry Shake
+ *    USGS Earthquake Catalog
+  *   IRIS Seismic Data
+   *  Sentinel-1 InSAR Data 
+   *  Raspberry Shake
+
 🧪 Model Evaluation
 
 
-Model
-Task
-Accuracy / F1 Score
-CNN-RNN
-Seismic waveform classification
-91% F1
-BART-large
-Seismic bulletin summarization
-ROUGE-L 0.78
-ResNet50
-Spectrogram classification
-88% accuracy
+    Model
+    Task
+    Accuracy / F1 Score
+    CNN-RNN
+    Seismic waveform classification
+    91% F1
+    BART-large
+    Seismic bulletin summarization
+    ROUGE-L 0.78
+    ResNet50
+    Spectrogram classification
+    88% accuracy
 
+# Todo List:
+## July Work
+### Imlement header and tabs on the laniding page
+### Complete the follwing dashboard stats
+* Current Regional Risk Level
+* Seismic Activity Summary
+* Risk Trend (Last 30 Days)
 
-
-Would you like:
-
-    Filtering by region (bounding box)?
-
-    Results for a specific country?
-
-    A live automated fetch-and-plot pipeline?
+### Would like to do:
+* Filtering by region (bounding box)?
+* Results for a specific country?
+* A live automated fetch-and-plot pipeline?
