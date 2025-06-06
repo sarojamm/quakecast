@@ -1,4 +1,6 @@
-
+quakewebui/package-lock.json
+backend/venv/
+services/
 
 # Node modules
 quakewebui/node_modules/
