@@ -1,13 +1,53 @@
-<h2>Recent Earthquakes</h2>
-<div *ngIf="loading" class="text-center py-4 text-gray-500">
- 
-<ag-grid-angular
-  style="width: 100%; height: 600px;"
-  class="ag-theme-alpine"
-  [rowData]="earthquakes"
-  [columnDefs]="columnDefs"
-  [pagination]="true"
-  [paginationPageSize]="10"
-  (rowClicked)="onRowClicked($event)">
-</ag-grid-angular>
+<div class="grid grid-cols-2 gap-4 p-6">
+  <!-- Risk Level -->
+  <div class="border p-4 rounded-xl shadow">
+    <h2 class="text-xl font-bold">Current Regional Risk Level</h2>
+    {{riskLevel.earthquakes}}
+    <p>Region: {{ riskLevel.region }}</p>
+    <p>Risk Score: {{ riskLevel.score }}</p>
+    <p>Updated: {{ riskLevel.updated }}</p>
+  </div>
+
+  <!-- Seismic Summary -->
+  <div class="border p-4 rounded-xl shadow">
+    <h2 class="text-xl font-bold">Seismic Activity Summary</h2>
+    <p>Past 24 hrs: {{ summary.earthquakes}} events</p>
+    <p>Past 24 hrs: {{ summary.count }} events</p>
+    <p>Avg Mag: {{ summary.avgMag }} | Max Mag: {{ summary.maxMag }}</p>
+    <p>Foreshock Patterns: {{ summary.foreshock }}</p>
+  </div>
+
+  <!-- Risk Trend -->
+  <div class="border p-4 rounded-xl shadow col-span-1">
+    <h2 class="text-xl font-bold">Risk Trend (Last 30 Days)</h2>
+    <div class="h-40 bg-gray-100 mt-2 flex items-center justify-center text-sm text-gray-500">
+      <div class="border p-4 rounded-xl shadow col-span-1"> 
+        {{riskTrendData |json}}
+        <!-- <div class="h-64 mt-4">
+          <canvas baseChart
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            chartType="line">
+          </canvas>
+        </div> -->
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Recent Events -->
+  <div  *ngIf="loading" class="border p-3 rounded-xl shadow col-span-1">
+    <h2 class="text-xl font-bold">Recent Events</h2>
+    <ag-grid-angular
+    style="width: 100%; height: 200px;"
+    class="ag-theme-alpine"
+    [rowData]="earthquakes"
+    [columnDefs]="columnDefs" 
+    (rowClicked)="onRowClicked($event)">
+  </ag-grid-angular>
+    
+  </div>
 </div>
+
+
