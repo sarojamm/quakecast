@@ -111,3 +111,5 @@ cd quakecast
 * Filtering by region (bounding box)?
 * Results for a specific country?
 * A live automated fetch-and-plot pipeline?
+
+## June Work part 2
