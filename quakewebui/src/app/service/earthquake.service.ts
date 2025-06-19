@@ -27,4 +27,18 @@ export class EarthquakeService {
     console.log(" getActivitySummary ")
     return this.http.get(this.apiUrl+'activity-summary');
   }
+  getRiskLevel(): Observable<any> {
+    console.log(" getRiskLevel ")
+    return this.http.get(this.apiUrl+'risk-level');
+  }
+  getRiskTrend(): Observable<any> {
+    console.log(" getRiskTrend ")
+    return this.http.get(this.apiUrl+'risk-trend');
+  }
+  getSevenDayActivitySummary(): Observable<any> {
+    console.log(" getSevenDayActivitySummary ")
+    return this.http.get(this.apiUrl+'activity-summary-sevendays');
+  }
+  
+
 }
