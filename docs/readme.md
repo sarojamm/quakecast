@@ -100,7 +100,7 @@ cd quakecast
     88% accuracy
 
 # Todo List:
-## July Work
+## June Work
 ### Imlement header and tabs on the laniding page
 ### Complete the follwing dashboard stats
 * Current Regional Risk Level

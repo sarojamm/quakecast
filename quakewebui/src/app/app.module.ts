@@ -7,14 +7,22 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { EventDetailComponent } from './event-detail/event-detail.component';
-import { RiskTrendComponent } from './risk-trend/risk-trend.component'; 
+import { RiskTrendComponent } from './risk-trend/risk-trend.component';
+import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
+import { RiskMapComponent } from './risk-map/risk-map.component';
+import { WaveformViewerComponent } from './waveform-viewer/waveform-viewer.component';
+import { ReportsComponent } from './reports/reports.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     EventDetailComponent,
-    RiskTrendComponent
+    RiskTrendComponent,
+    DashboardHeaderComponent,
+    RiskMapComponent,
+    WaveformViewerComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
