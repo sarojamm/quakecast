@@ -10,10 +10,15 @@
   <!-- Risk Level -->
   <div class="border p-4 rounded-xl shadow">
      <h2 class="text-xl font-bold">Current Regional Risk Level</h2> 
-    <!-- {{riskLevel.earthquakes | json}}  -->
+    Title: {{riskLevel.earthquakes.data.metadata.title | json}}  <br>
+    Count: {{riskLevel.earthquakes.data.metadata.count | json}} <br>
+    Starttime: {{riskLevel.earthquakes.data.metadata.starttime | json}}  <br>
+    Endtime: {{riskLevel.earthquakes.data.metadata.starttime | json}}  <br>
+   
     <p>Region: {{ riskLevel.region }}</p>
     <p>Risk Score: {{ riskLevel.score }}</p>
     <p>Updated: {{ riskLevel.updated }}</p>
+    <!-- Title: {{riskLevel.earthquakes.data| json}} -->
   </div>
   
   <!-- Seismic Summary -->

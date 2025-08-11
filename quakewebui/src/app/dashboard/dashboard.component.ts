@@ -89,16 +89,10 @@ export class DashboardComponent implements OnInit {
       ];
 
       this.rislTredColumnDefs = [
-        { headerName: 'Time' ,field: 'time', sortable: true, filter: true },
-        { headerName: 'Magnitude',field: 'magnitude', sortable: true, filter: 'agNumberColumnFilter' ,minWidth: 60, maxWidth: 85},
-        {
-          headerName: 'Date & Time',
-          field: 'date',
-          valueFormatter: (params: any) => new Date(params.value).toLocaleString(),
-          sortable: true,
-          filter: true,
-        },
-        { field: 'depth', headerName: 'Depth (km)', sortable: true, filter: 'agNumberColumnFilter' ,minWidth: 60, maxWidth: 120},
+        { headerName: 'Time' , field: 'time', sortable: true, filter: true },
+        { headerName: 'Magnitude', field: 'magnitude', sortable: true, filter: 'agNumberColumnFilter' ,minWidth: 60, maxWidth: 85},
+        { headerName: 'Date & Time', field: 'date', valueFormatter: (params: any) => new Date(params.value).toLocaleString(), },
+        { headerName: 'Depth (km)', filter: 'agNumberColumnFilter' ,minWidth: 60, maxWidth: 120},
       ];
   }
 
